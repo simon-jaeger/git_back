@@ -1,5 +1,6 @@
 import os
 import subprocess
+import shutil
 from datetime import datetime
 from dotenv import load_dotenv
 from github import Github, Auth
@@ -25,6 +26,10 @@ for repo in github.get_user().get_repos(affiliation="owner"):
 		],
 		capture_output=True,
 	)
+
+print("create zip")
+shutil.make_archive(folder, "zip", folder)
+shutil.rmtree(folder)
 
 print("done")
 github.close()
